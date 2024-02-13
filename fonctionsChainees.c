@@ -61,8 +61,51 @@ void insertion(Liste *liste, int nvNombre)
     liste->premier = nouveau;/* !!! on ajoute l'adresse de l'element ??? a verifier || OC cource : Faire pointer le pointeur premier vers notre nouvel élément.*/
 }
 
+/* fonction pour suprimer un Element de la chaine */
+void suppression(Liste *liste)
+{
+    if(liste == NULL)
+    {
+        exit(EXIT_FAILURE);/* on teste si la liste est vide on arrete la fonction */
+    }
+    
+    if(liste->premier != NULL)
+    {
+        Element *aSupprimer = liste->premier;/* on sauvegarde l'adresse de element a supprimer dans le pointeru aSupprimer*/
+        liste->premier = liste->premier->suivant;/* on adapte ensuite le pointeur premier vers le nouveau premier element, actelment en seconde position de la liste chainee */
+        free(aSupprimer);/* on libere la memoire allouer */
+    }
+}
 
+/* pour afficher les liste il sufi d'afficher un element pui de soter d'un element apres l'autre */
+void afficherListe(Liste *liste)
+{
+    if(liste == NULL)
+    {
+        exit(EXIT_FAILURE);/* si la liste est vide on arrete la fonction */
+    }
+    
+    Element *actuel = liste->premier;/* */
+    
+    while(actuel != NULL)
+    {
+        printf("%d -> ", actuel->nombre);
+        actuel = actuel->suivant;/* On se sert du pointeur suivant pour passer à l'élément qui suit à chaque fois.On se sert du pointeur suivant pour passer à l'élément qui suit à chaque fois.*/
+    }
+    printf("NULL \n");
+}
+int main()
+{
+    Liste *maListe = initialisation();
 
-int main( void ){}
+        insertion(maListe, 4);
+        insertion(maListe, 8);
+        insertion(maListe, 15);
+        suppression(maListe);
+
+        afficherListe(maListe);
+
+        return 0;
+}
 
 
