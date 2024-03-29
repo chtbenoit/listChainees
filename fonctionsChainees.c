@@ -1,14 +1,14 @@
-/* petit script personel pour stocker avec des list chainees */
-/* source: https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/19733-stockez-les-donnees-avec-les-listes-chainees */
-/* date : lun 12 fevr 2024 */
+/* petit script personel pour stocker avec des list chainees
+source: https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/19733-stockez-les-donnees-avec-les-listes-chainees
+date : lun 12 fevr 2024 || update 28 fev 2024 */
 
 #include<stdio.h>
 #include<stdlib.h>
 
 
 /*cration d'une struct de la liste d'Elements*/
-typedef struct Element Element;/*creation d'une structure Element contenant une donnée(s) et un pouetur vers l'adresse de l'element suivant*/
-struct Element
+typedef struct Element Element;
+struct Element/*creation d'une structure Element contenant une donnée(s) et un pouetur vers l'adresse de l'element suivant*/
 {
     int nombre;/* Donée */
     Element *suivant;/* pointeur de l'ement suivant */
@@ -23,7 +23,7 @@ struct Liste
 };
 
 
-/* ici on retrouve les fonctions qui permete de ma nipuler nos structure Element*/
+/* ici on retrouve les fonctions qui permete de manipuler nos structure Element*/
 
 Liste *initialisation()
 {
@@ -71,7 +71,7 @@ void suppression(Liste *liste)
     
     if(liste->premier != NULL)
     {
-        Element *aSupprimer = liste->premier;/* on sauvegarde l'adresse de element a supprimer dans le pointeru aSupprimer*/
+        Element *aSupprimer = liste->premier;/* on sauvegarde l'adresse de element a supprimer dans le pointeur aSupprimer*/
         liste->premier = liste->premier->suivant;/* on adapte ensuite le pointeur premier vers le nouveau premier element, actelment en seconde position de la liste chainee */
         free(aSupprimer);/* on libere la memoire allouer */
     }
@@ -85,11 +85,11 @@ void afficherListe(Liste *liste)
         exit(EXIT_FAILURE);/* si la liste est vide on arrete la fonction */
     }
     
-    Element *actuel = liste->premier;/* */
+    Element *actuel = liste->premier;/* cration d'un ptr de type Element qui prend l'adresse du premier element dans la liste */
     
     while(actuel != NULL)
     {
-        printf("%d -> ", actuel->nombre);
+        printf("%d-> ", actuel->nombre);
         actuel = actuel->suivant;/* On se sert du pointeur suivant pour passer à l'élément qui suit à chaque fois.On se sert du pointeur suivant pour passer à l'élément qui suit à chaque fois.*/
     }
     printf("NULL \n");
@@ -107,5 +107,3 @@ int main()
 
         return 0;
 }
-
-
